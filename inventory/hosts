@@ -1,2 +1,2 @@
 [servers_all]
-node1 ansible_host=node.djub.ru
+node1 ansible_host=node.djub.ru ansible_user=root
