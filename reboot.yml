@@ -1,0 +1,8 @@
+---
+- name: reboot
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - reboot
