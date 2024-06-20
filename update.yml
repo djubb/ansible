@@ -1,0 +1,9 @@
+---
+- name: update
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - update
+    - reboot
