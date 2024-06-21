@@ -1,0 +1,11 @@
+---
+- name: install-microk8s
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - update
+    - install-microk8s
+    - reboot
+
