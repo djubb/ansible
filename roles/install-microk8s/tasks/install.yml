@@ -1,0 +1,25 @@
+---
+- name: Make sure snapd is installed
+  package:
+    name:
+      - snapd
+    state: latest
+  become: yes
+
+- name: Install microk8s
+  community.general.snap:
+    classic: true
+    channel: "1.30"
+    name: microk8s
+  become: yes
+
+- name: Wait for MicroK8s to be ready
+  ansible.builtin.shell: /snap/bin/microk8s status --wait-ready
+  register: microk8s_status
+  retries: 2
+  delay: 30
+  until: microk8s_status.rc == 0
+
+- name: Output MicroK8s status
+  debug:
+    msg: "{{ microk8s_status.stdout }}"
