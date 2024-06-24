@@ -20,6 +20,6 @@
   delay: 30
   until: microk8s_status.rc == 0
 
-- name: Output MicroK8s status
+- name: Output microK8s status
   debug:
     msg: "{{ microk8s_status.stdout }}"
