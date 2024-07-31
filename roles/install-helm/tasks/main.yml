@@ -1,0 +1,18 @@
+---
+  tasks:
+    - name: Get latest Helm version
+      ansible.builtin.shell:
+       "curl -s https://api.github.com/repos/helm/helm/releases/latest | grep 'tag_name' | cut -d ':' -f 2 | tr -d '\" ,'"
+      register: helm_latest_version
+
+    - name: Install helm if not exists
+      ansible.builtin.unarchive:
+        src: https://get.helm.sh/helm-{{ helm_latest_version.stdout }}-linux-amd64.tar.gz
+        dest: /usr/local/bin
+        extra_opts: "--strip-components=1"
+        owner: root
+        group: root
+        mode: 0755
+        remote_src: true
+      args:
+        creates: /usr/local/bin/helm

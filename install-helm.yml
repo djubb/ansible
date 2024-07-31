@@ -1,0 +1,10 @@
+---
+- name: install-helm
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - update
+    - install-helm
+
